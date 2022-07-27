@@ -1,25 +1,35 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter } from "react-router-dom";
+import { Active } from './pages/Active';
+import { AllTasks } from './pages/AllTasks';
+import { Completed } from './pages/Сompleted';
+import { NavLink, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>
+          <img src={logo} className="App-logo" alt="logo" />
+        </div>
+        <nav className='App-nav'>
+          <NavLink to={'/'}>All</NavLink>
+          <NavLink to={'/active'}>Active</NavLink>
+          <NavLink to={'/completed'}>Completed</NavLink>
+        </nav>
       </header>
+      <div className="App-content">
+        <Routes>
+          <Route path='/' element={<AllTasks/>} />
+          <Route path='/active' element={<Active/>} />
+          <Route path='/completed' element={<Completed/>} />
+        </Routes>
+      </div>
     </div>
+    </BrowserRouter>
   );
 }
 
