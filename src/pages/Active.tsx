@@ -1,5 +1,5 @@
 export function Active() {
     return (
-        <div>Active</div>
+        <h3>Active</h3>
     );
 }

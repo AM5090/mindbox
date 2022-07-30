@@ -1,5 +1,5 @@
 export function Completed() {
     return (
-        <div>Completed</div>
+        <h3>Completed</h3>
     );
 }
