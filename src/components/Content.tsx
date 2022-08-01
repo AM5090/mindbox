@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import { Active } from '../pages/Active';
@@ -9,7 +10,9 @@ export function Content() {
 
     const dispatch = useDispatch();
 
-    dispatch(tasksAsyncRequest());
+    useEffect(() => {
+        dispatch(tasksAsyncRequest());
+    }, []);
 
     return (
         <div className='App-content'>

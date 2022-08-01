@@ -2,17 +2,20 @@ import { Button, Card } from "react-bootstrap";
 import { Form } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import React, { useState } from "react";
+import { ITaskItem } from "../store/rootAction";
 
 interface ITaskItemProps {
-    taskItem: {
-        completed: boolean;
-        id: number;
-        title: string;
-        userId: number;
-    }
+    taskItem: ITaskItem;
 }
 
 export function TaskItem({taskItem}: ITaskItemProps) {
+
+    const [checked, setChecked] = useState(taskItem.completed);
+
+    function handleChecked() {
+        setChecked(!checked);
+    }
 
     return (
         <Card style={{
@@ -23,7 +26,7 @@ export function TaskItem({taskItem}: ITaskItemProps) {
         }}>
             <Row>
                 <Col xs={2}>
-                    <Form.Check type="switch"/>
+                    <Form.Check type="switch" isValid checked={checked} onChange={handleChecked} />
                 </Col>
                 <Col>
                     <Card.Text style={{textAlign: "left"}}>{taskItem.title}</Card.Text>
