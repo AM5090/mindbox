@@ -46,7 +46,7 @@ export const tasksPutAsyncRequest = (task: ITaskItem, checked: boolean): ThunkAc
                     return res.data;
                 }
                 return item;
-            })
+            });
             
             dispatch(tasksAction(newTasks));
         })
@@ -54,4 +54,22 @@ export const tasksPutAsyncRequest = (task: ITaskItem, checked: boolean): ThunkAc
             console.log(error);
         });
 
+}
+
+export const tasksPostAsyncRequest = (newTaskText: string): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState) => {
+    axios.post('https://jsonplaceholder.typicode.com/todos', {
+        userId: 1,
+        title: newTaskText,
+        completed: false
+    })
+        .then((res) => {
+            const oldTasks = getState().tasks;
+            const tasksLength = oldTasks.length;
+            const lastId = oldTasks[tasksLength-1].id;
+            const newTasks = [...oldTasks, {...res.data, id: lastId + 1}];
+            dispatch(tasksAction(newTasks));
+        })
+        .catch((error) => {
+            console.log(error);
+        })
 }

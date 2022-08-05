@@ -1,7 +1,4 @@
-import { Button, Card } from "react-bootstrap";
-import { Form } from 'react-bootstrap';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { ITaskItem, tasksAsyncRequest, tasksPutAsyncRequest } from "../store/rootAction";
 import axios from 'axios';
@@ -40,7 +37,7 @@ export function TaskItem({taskItem}: ITaskItemProps) {
                     >
                     {!checked ? 
                         <span>{taskItem.title}</span> : 
-                        <span><del>{taskItem.title}</del></span>
+                        <span className="text-secondary"><del>{taskItem.title}</del></span>
                     }
                     </Card.Text>
                 </Col>

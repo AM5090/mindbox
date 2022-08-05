@@ -18,7 +18,7 @@ export function Completed() {
             </Container>
             <Container>
                 <Row style={{ padding: '20px 10px' }}>
-                    {completedTasks.map((task: ITaskItem) => (
+                    {[...completedTasks].reverse().map((task: ITaskItem) => (
                         <TaskItem key={task.id}
                             taskItem={task}
                         />

@@ -18,7 +18,7 @@ export function Active() {
             </Container>
             <Container>
                 <Row style={{ padding: '20px 10px' }}>
-                    {activeTasks.map((task: ITaskItem) => (
+                    {[...activeTasks].reverse().map((task: ITaskItem) => (
                         <TaskItem key={task.id}
                             taskItem={task}
                         />

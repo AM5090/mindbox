@@ -16,8 +16,8 @@ export function AllTasks() {
                 <TasksNumber length={tasks.length}/>
             </Container>
             <Container>
-                <Row style={{ padding: '20px 10px' }}>
-                    {tasks.map((task: ITaskItem) => (
+                <Row style={{ padding: '10px 10px' }}>
+                    {[...tasks].reverse().map((task: ITaskItem) => (
                         <TaskItem key={task.id}
                             taskItem={task}
                         />
