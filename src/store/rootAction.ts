@@ -29,7 +29,7 @@ export const tasksAsyncRequest = (): ThunkAction<void, RootState, unknown, Actio
         })
         .catch((error) => {
             console.log(error);
-        })
+        });
 
 }
 
@@ -71,5 +71,19 @@ export const tasksPostAsyncRequest = (newTaskText: string): ThunkAction<void, Ro
         })
         .catch((error) => {
             console.log(error);
+        });
+}
+
+export const tasksDeleteAsyncRequest = (taskId: number): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState) => {
+
+    axios.delete(`https://jsonplaceholder.typicode.com/todos/${taskId}`)
+        .then((res) => {
+            const oldTasks = getState().tasks;
+            const newTasks = oldTasks.filter((item) => item.id !== taskId);
+            dispatch(tasksAction(newTasks));
         })
+        .catch((error) => {
+            console.log(error);
+        });
+
 }

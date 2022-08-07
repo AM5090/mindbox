@@ -1,6 +1,6 @@
 import { Form, Button, Card, Row, Col } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import { ITaskItem, tasksAsyncRequest, tasksPutAsyncRequest } from "../store/rootAction";
+import { ITaskItem, tasksAsyncRequest, tasksPutAsyncRequest, tasksDeleteAsyncRequest } from "../store/rootAction";
 import axios from 'axios';
 import { useDispatch } from "react-redux";
 
@@ -14,6 +14,9 @@ export function TaskItem({taskItem}: ITaskItemProps) {
     const dispatch = useDispatch();
 
 
+    function handleDelete() {
+        dispatch(tasksDeleteAsyncRequest(taskItem.id));
+    }
 
     function handleChecked() {
         setChecked(!checked);
@@ -42,7 +45,7 @@ export function TaskItem({taskItem}: ITaskItemProps) {
                     </Card.Text>
                 </Col>
                 <Col xs={2}>
-                    <Button variant="outline-danger" size="sm">
+                    <Button onClick={handleDelete} variant="outline-danger" size="sm">
                         <i className="bi bi-trash3"></i>
                     </Button>
                 </Col>
